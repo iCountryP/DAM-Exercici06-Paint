@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+
+<HBox xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.Controller">
+
+    <children>
+
+        <!-- Zona izquierda: espacio para dibujar -->
+        <Canvas fx:id="canvas" height="500.0" width="600.0" />
+
+        <!-- Zona central: herramientas -->
+        <VBox prefWidth="160.0" spacing="8.0" style="-fx-background-color: #eeeeee;">
+
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+
+            <fx:define>
+                <ToggleGroup fx:id="toolGroup" />
+                <ToggleGroup fx:id="widthGroup" />
+            </fx:define>
+
+            <children>
+
+                <!-- Herramientas de dibujo -->
+                <Label style="-fx-font-weight: bold;" text="Tool" />
+
+                <RadioButton fx:id="freehandRadio" selected="true" text="Freehand">
+               <toggleGroup>
+                  <ToggleGroup fx:id="toolGroup" />
+               </toggleGroup></RadioButton>
+
+                <RadioButton fx:id="lineRadio" text="Line" toggleGroup="$toolGroup" />
+
+                <RadioButton fx:id="rectangleRadio" text="Rectangle" toggleGroup="$toolGroup" />
+
+                <!-- Grosor del trazo -->
+                <Label style="-fx-font-weight: bold;" text="Width" />
+
+                <RadioButton fx:id="thinRadio" selected="true" text="Thin">
+               <toggleGroup>
+                  <ToggleGroup fx:id="widthGroup" />
+               </toggleGroup></RadioButton>
+
+                <RadioButton fx:id="thickRadio" text="Thick" toggleGroup="$widthGroup" />
+
+                <!-- Colores personalizables -->
+                <Label style="-fx-font-weight: bold;" text="Stroke Color" />
+
+                <ColorPicker fx:id="strokeColorPicker">
+                    <value>
+                        <Color red="0.0" green="0.0" blue="0.0" />
+                    </value>
+                </ColorPicker>
+
+                <Label style="-fx-font-weight: bold;" text="Fill Color" />
+
+                <ColorPicker fx:id="fillColorPicker">
+                    <value>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                    </value>
+                </ColorPicker>
+
+                <CheckBox fx:id="fillCheckBox" selected="false" text="Fill rectangle" />
+
+                <!-- Paleta original del profesor -->
+                <Label style="-fx-font-weight: bold;" text="Color" />
+
+                <Canvas fx:id="colorsCanvas" height="160.0" width="120.0" />
+
+            </children>
+        </VBox>
+
+        <!-- Zona derecha: lista de objetos -->
+        <VBox prefWidth="160.0" spacing="8.0">
+
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+
+            <children>
+                <Label style="-fx-font-weight: bold;" text="Objects" />
+            <ListView fx:id="objectsListView" prefHeight="200.0" prefWidth="200.0" />
+            <Button fx:id="deleteButton" disable="true" mnemonicParsing="false" text="Delete selected" />
+            </children>
+
+        </VBox>
+
+    </children>
+</HBox>
